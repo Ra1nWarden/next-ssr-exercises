@@ -28,6 +28,12 @@ function reducer(state, action) {
         draftState.splice(itemIndex, 1);
         return;
       }
+        
+      case 'load-cart': {
+        console.log(action.cart);
+        action.cart.map((item) => draftState.push(item));
+        return;
+      }
     }
   });
 }
