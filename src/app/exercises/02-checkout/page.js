@@ -15,21 +15,19 @@ function CheckoutExercise() {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    if (typeof localStorage !== undefined) {
-      const json = localStorage.getItem(CART_KEY);
-      if (json) {
-        const cart = JSON.parse(json);
-        dispatch({
-          type: "load-cart",
-          cart,
-        });
-      }
-      setIsLoaded(true);
+    const json = localStorage.getItem(CART_KEY);
+    if (json) {
+      const cart = JSON.parse(json);
+      dispatch({
+        type: "load-cart",
+        cart,
+      });
     }
+    setIsLoaded(true);
   }, []);
 
   React.useEffect(() => {
-    if (typeof localStorage !== undefined) {
+    if (isLoaded) {
       localStorage.setItem(CART_KEY, JSON.stringify(items));
     }
   }, [items]);
